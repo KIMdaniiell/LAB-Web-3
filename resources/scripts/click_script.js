@@ -3,8 +3,6 @@ window.onload = function (){
     currentRadius = Math.round(currentRadius/0.5-1);
     showGraph(currentRadius);
 
-
-/**
     let canvas = document.getElementById("Canvas");
 
     let getOffsetTop = element => {
@@ -25,19 +23,18 @@ window.onload = function (){
         return offsetLeft;
     }
 
-    let canvasTopOffset = getOffsetTop(canvas)+22;
-    let canvasLeftOffset = getOffsetLeft(canvas)+21;
-
+    let canvasTopOffset = getOffsetTop(canvas);
+    let canvasLeftOffset = getOffsetLeft(canvas)
+    console.log("top offset = "+canvasTopOffset)
+    console.log("left offset = "+canvasLeftOffset)
 
     window.onresize = function (){
-        canvasTopOffset = getOffsetTop(canvas)+22;
-        canvasLeftOffset = getOffsetLeft(canvas)+21;
-
-        console.log("[ClickScript] x0 = "+canvasLeftOffset+"  y0 = "+canvasTopOffset);
+        canvasTopOffset = getOffsetTop(canvas);
+        canvasLeftOffset = getOffsetLeft(canvas);
     }
 
     canvas.onclick = function () { clickHandler(event,canvasLeftOffset,canvasTopOffset) };
- **/
+
 }
 
 function showGraph(num){
@@ -95,7 +92,7 @@ function showAttempts(num){
             if (result === "MISS") {
                 context.fillStyle = 'red';
             } else if (result === "HIT") {
-                context.fillStyle = 'green';
+                context.fillStyle = 'lightgreen';
 
             }
             context.beginPath();
@@ -106,9 +103,22 @@ function showAttempts(num){
 }
 
 function clickHandler ( mouseClick, LeftOffset, TopOffset) {
-    console.log("[ClickScript] X = "+(mouseClick.pageX - LeftOffset -255)/200 + "  Y = " + -(mouseClick.pageY - TopOffset-255)/200);
-    console.log("[ClickScript] x0 = "+LeftOffset+"  y0 = "+TopOffset);
+    console.log("[px] X = "+ (mouseClick.pageX - LeftOffset-255) + "  Y = " + (mouseClick.pageY - TopOffset-255));
+    let currentRadius = parseFloat(document.getElementsByClassName("formFieldWrapper")[2].getElementsByClassName("fieldValue")[0].innerText);
+    console.log(currentRadius);
+    let processedX = ((mouseClick.pageX - LeftOffset-255)/(200/currentRadius)).toFixed(2);
+    let processedY = ((mouseClick.pageY - TopOffset-255)/(200/currentRadius)*(-1)).toFixed(2);
+    let processedR = currentRadius;
+    console.log("[res] X = "+ processedX + "  Y = " + processedY );
 
+    let hidTable = document.getElementsByClassName("hidden")[0];
+    hidTable.getElementsByTagName("input")[1].value  = processedX+"";
+    hidTable.getElementsByTagName("input")[2].value  = processedY+"";
+    hidTable.getElementsByTagName("input")[3].value  = processedR+"";
+    console.log("hidden submit!");
+    hidTable.getElementsByTagName("input")[4].click();
+
+    /**
     let dataIsCorrect = true;
     let rAlreadyChecked = false;
     let r;
@@ -147,4 +157,5 @@ function clickHandler ( mouseClick, LeftOffset, TopOffset) {
         handle(x, y, r);
         console.log("[ClickScript] POST запрос сформирован и отправлен.");
     }
+     **/
 }
