@@ -27,7 +27,7 @@ public class DataWrapper implements Serializable {
     }
 
     public double getX() {
-        return x;
+        return x ;
     }
 
     public void setX(double x) {
