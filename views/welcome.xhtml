@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Стартовая страница</title>
+        <h:outputStylesheet library="styles" name="welcome.css"  />
+    </h:head>
+    <h:body>
+        <div id="header">
+            <div class="heading">
+                <p>КИМ ДАНИИЛ КВАНХЕНОВИЧ</p>
+            </div>
+            <div id="info">
+                <div class="heading">
+                    <p>P3231</p>
+                </div>
+                <div class="heading">
+                    <p>33001</p>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <div id="clock">
+                <div class="clockBlock" id="hours">
+                    <p>10</p>
+                </div>
+                <div class="clockDelimiter">
+                    <p>:</p>
+                </div>
+                <div class="clockBlock" id="minutes">
+                    <p>10</p>
+                </div>
+                <div class="clockDelimiter">
+                    <p>:</p>
+                </div>
+                <div class="clockBlock" id="seconds">
+                    <p>10</p>
+                </div>
+            </div>
+            <div id="calendar">
+                <div class="calendarBlock" id="day">
+                    <p>08</p>
+                </div>
+                <div class="calendarDelimiter">
+                    <p>.</p>
+                </div>
+                <div class="calendarBlock" id="month">
+                    <p>01</p>
+                </div>
+                <div class="calendarDelimiter">
+                    <p>.</p>
+                </div>
+                <div class="calendarBlock" id="year">
+                    <p>2022</p>
+                </div>
+            </div>
+            <div id="button">
+                <h:form>
+                    <h:commandButton  id="submit" styleClass="bnt" action="toMain" value="НА ГЛАВНУЮ"/>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</f:view>
+</html>

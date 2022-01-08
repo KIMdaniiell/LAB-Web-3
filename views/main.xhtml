@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Основная страница</title>
+        <h:outputStylesheet library="styles" name="main.css"  />
+        <h:outputScript library="scripts" name="click_script.js"/>
+    </h:head>
+    <h:body>
+        <div id="header">
+            <div class="heading">
+                <p>КИМ ДАНИИЛ КВАНХЕНОВИЧ</p>
+            </div>
+            <div id="info">
+                <div class="heading">
+                    <p>P3231</p>
+                </div>
+                <div class="heading">
+                    <p>33001</p>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <div id="topBlock">
+                <div id="graph">
+                    <canvas id="Canvas" class="bordered" width="512" height="512">
+                        <h:graphicImage id = "Graph1" value="../resources/pngs/graphR1.png"/>
+                        <h:graphicImage id = "Graph2" value="../resources/pngs/graphR2.png"/>
+                        <h:graphicImage id = "Graph3" value="../resources/pngs/graphR3.png"/>
+                        <h:graphicImage id = "Graph4" value="../resources/pngs/graphR4.png"/>
+                        <h:graphicImage id = "Graph5" value="../resources/pngs/graphR5.png"/>
+                    </canvas>
+                </div>
+                <div id="interactive">
+                    <h:form>
+                            <div id="form">
+                                <div class="formFieldWrapper">
+                                    <div class="fieldDisplay">
+                                        <div class="fieldName">
+                                            <p>X</p>
+                                        </div>
+                                        <div class="fieldValue">
+                                            <p>
+                                                <h:outputText id="xDisplay" value="#{tableDataBean.x}" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="fieldChoice">
+                                        <h:commandButton styleClass="commandbtn" id="xn3" value="-3" action="#{tableDataBean.setX(-3)}">
+                                            <f:ajax execute="xn3" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xn2" value="-2" action="#{tableDataBean.setX(-2)}">
+                                            <f:ajax execute="xn2" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xn1" value="-1" action="#{tableDataBean.setX(-1)}">
+                                            <f:ajax execute="xn1" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xp0" value="0" action="#{tableDataBean.setX(0)}">
+                                            <f:ajax execute="xp0" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xp1" value="1" action="#{tableDataBean.setX(1)}">
+                                            <f:ajax execute="xp1" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xp2" value="2" action="#{tableDataBean.setX(2)}">
+                                            <f:ajax execute="xp2" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xp3" value="3" action="#{tableDataBean.setX(3)}">
+                                            <f:ajax execute="xp3" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xp4" value="4" action="#{tableDataBean.setX(4)}">
+                                            <f:ajax execute="xp4" render="xDisplay"/>
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="commandbtn" id="xp5" value="5" action="#{tableDataBean.setX(5)}">
+                                            <f:ajax execute="xp5" render="xDisplay"/>
+                                        </h:commandButton>
+                                    </div>
+                                </div>
+                                <div class="formFieldWrapper">
+                                    <div class="fieldDisplay">
+                                        <div class="fieldName">
+                                            <p>Y</p>
+                                        </div>
+                                        <div class="fieldChoice">
+                                            <h:inputText id="yInput" value="#{tableDataBean.y}" required="true" maxlength="20" onkeydown="var x = event.which; if (x === 13) { event.preventDefault();}">
+                                                <f:validateLongRange minimum="-5" maximum="3"/>
+                                            </h:inputText>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formFieldWrapper">
+                                    <div class="fieldDisplay">
+                                        <div class="fieldName">
+                                            <p>R</p>
+                                        </div>
+                                        <div class="fieldValue" >
+                                            <p>
+                                                <h:outputText id="rDisplay" value="#{tableDataBean.r}" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="fieldChoice" id="rbtns">
+                                        <h:commandLink id="r1" value="1" action="#{tableDataBean.setR(1)}" onclick="showGraph(1)">
+                                            <f:ajax execute="r1" render="rDisplay"/>
+                                        </h:commandLink>
+                                        <h:commandLink id="r15" value="1.5" action="#{tableDataBean.setR(1.5)}" onclick="showGraph(2)">
+                                            <f:ajax execute="r15" render="rDisplay"/>
+                                        </h:commandLink>
+                                        <h:commandLink id="r2" value="2" action="#{tableDataBean.setR(2)}" onclick="showGraph(3)">
+                                            <f:ajax execute="r2" render="rDisplay"/>
+                                        </h:commandLink>
+                                        <h:commandLink id="r25" value="2.5" action="#{tableDataBean.setR(2.5)}" onclick="showGraph(4)">
+                                            <f:ajax execute="r25" render="rDisplay"/>
+                                        </h:commandLink>
+                                        <h:commandLink id="r3" value="3" action="#{tableDataBean.setR(3)}" onclick="showGraph(5)">
+                                            <f:ajax execute="r3" render="rDisplay" />
+                                        </h:commandLink>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btns">
+                                <div id="formButton">
+                                    <h:commandButton id="submitComBut"  styleClass="bnt" action="#{tableDataBean.process}" value="ОТПРАВИТЬ"/>
+                                </div>
+                                <div id="resetButton">
+                                    <h:commandButton id="resetComBut" styleClass="bnt" action="#{tableDataBean.resetList}" value="ОЧИСТИТЬ" onclick="showGraph()">
+                                        <f:ajax execute="resetComBut" render="result_table"/>
+                                    </h:commandButton>
+                                </div>
+                                <div id="button">
+                                    <h:commandButton  id="submit" styleClass="bnt" action="toWelcome" value="В НАЧАЛО"/>
+                                </div>
+                            </div>
+                        </h:form>
+                    <div id="errors">
+                        <span class="error">
+                            <h:messages/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div id="botBlock">
+                <div id="resultTable">
+                    <h:dataTable value="#{tableDataBean.beanList}" var="dot" id="result_table">
+                        <h:column>
+                            <f:facet  name="header">X</f:facet>
+                            ${dot.x}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Y</f:facet>
+                            ${dot.y}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">R</f:facet>
+                            ${dot.r}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Результат</f:facet>
+                            ${dot.result}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Время</f:facet>
+                            ${dot.current_time}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Выполнение</f:facet>
+                            ${dot.processing_time}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</f:view>
+</html>
