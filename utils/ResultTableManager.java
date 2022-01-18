@@ -1,5 +1,7 @@
 package utils;
 
+import beans.DataWrapper;
+
 import java.util.LinkedList;
 
 public class ResultTableManager {

@@ -1,11 +1,17 @@
 package beans;
 
+import entities.DotEntity;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import utils.AreaChecker;
-import utils.DataWrapper;
 import utils.ResultTableManager;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +27,10 @@ public class TableDataBean implements Serializable {
     private LocalDateTime current_time ;
     private double processing_time ;
 
+    @EJB
+    private Ejbean ejbean;
     private final ResultTableManager resultTableManager;
+
 
     public TableDataBean() {
         resultTableManager = new ResultTableManager();
@@ -93,13 +102,25 @@ public class TableDataBean implements Serializable {
         current_time = LocalDateTime.now();
         DataWrapper dataWrapper = new DataWrapper(x,y,r,result,current_time,processing_time);
         resultTableManager.addDataWrapper(dataWrapper);
+
+        DotEntity dotEntity = new DotEntity();
+        dotEntity.setX(x);
+        dotEntity.setY(y);
+        dotEntity.setR(r);
+        dotEntity.setResult(result);
+        dotEntity.setProcessing_time(processing_time);
+        dotEntity.setCurrent_time(current_time);
+        ejbean.loadDot(dotEntity);
+
     }
 
     public LinkedList getBeanList(){
-        return resultTableManager.getBeanList();
+        //return resultTableManager.getBeanList();
+        return ejbean.getDots();
     }
 
     public void resetList(){
-        resultTableManager.resetBeanList();
+        //resultTableManager.resetBeanList();
+        ejbean.resetDots();
     }
 }
