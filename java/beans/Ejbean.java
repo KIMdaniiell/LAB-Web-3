@@ -11,7 +11,7 @@ import java.util.LinkedList;
 @Stateless
 public class Ejbean {
 
-    @PersistenceContext(unitName = "examplePU")
+    @PersistenceContext(unitName = "NewExamplePU")
     private EntityManager entityManager;
 
     public void loadDot(DotEntity dot) {
@@ -29,6 +29,5 @@ public class Ejbean {
         for (Object o : l){
             entityManager.remove(o);
         }
-        //entityManager.clear();
     }
 }

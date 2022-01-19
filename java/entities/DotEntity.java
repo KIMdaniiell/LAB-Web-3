@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+@Table(name="dottable", schema = "s280054")
 @Entity
 public class DotEntity {
 
