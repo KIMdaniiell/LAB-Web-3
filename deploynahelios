@@ -1,0 +1,59 @@
+Микрогайд-напоминалка:
+  1) в standalone.xml вставляем 
+                                <datasources>
+                                  <datasource jndi-name="java:jboss/datasources/MyDataSource" pool-name="MyDataSource">
+                                      <connection-url>jdbc:postgresql://pg:5432/studs</connection-url>
+                                      <driver>postgresql</driver>
+                                      <security>
+                                          <user-name> s... </user-name>
+                                          <password> *пароль* </password>
+                                      </security>
+                                  </datasource>
+                                  <drivers>
+                                      <driver name="postgresql" module="org.postgresql">
+                                          <driver-class>org.postgresql.Driver</driver-class>
+                                      </driver>
+                                      <driver name="h2" module="com.h2database.h2">
+                                          <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                                      </driver>
+                                  </drivers>
+                                </datasources>
+2) в папке **wildfly path**/modules создаем папки org/postgresql/main
+3) туда скачиваем драйвер (в моем случае там postgresql-42.3.1)
+4) там же создаем файл module.xml
+
+                                <?xml version="1.0" encoding="UTF-8"?>
+                                  <module xmlns="urn:jboss:module:1.1" name="org.postgresql"> 
+
+                                      <resources> 
+                                      <!--the name of your driver --> 
+                                          <resource-root path="postgresql-42.3.1.jar"/> 
+                                      </resources> 
+
+                                      <dependencies> 
+                                          <module name="javax.api"/> 
+                                          <module name="javax.transaction.api"/> 
+                                      </dependencies> 
+                                  </module>
+5) через putty пробрасываем порт http 
+6) запуск через locahost:порт/лаба
+
+
+-----------------------------------------
+
+Чтобы открыть базу данных в идее:
+1) создаем ссш конфиг 
+      host: helios.cs.ifmo.ru
+      port: 2222
+      userName: s...
+      password: ...
+2) подключаеся к бд
+      host: pg
+      port: 5432
+      userName: s...
+      password: ...
+      db: studs
+      url: jdbc:postgresql://pg:5432/studs
+      
+      
+      вроде все
