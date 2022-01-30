@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Table(name="dottable", schema = "s280054")
 @Entity
@@ -36,6 +37,10 @@ public class DotEntity {
 
     public LocalDateTime getCurrent_time() {
         return current_time.toLocalDateTime();
+    }
+
+    public String  getFormatedCurrent_time() {
+        return current_time.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
     public void setCurrent_time(LocalDateTime current_time) {
